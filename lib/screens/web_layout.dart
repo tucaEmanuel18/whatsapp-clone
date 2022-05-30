@@ -12,7 +12,7 @@ import '../widgets/specific_web_widgets/search_bar.dart';
 
 class WebLayout extends StatelessWidget {
   const WebLayout({ Key? key }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,6 @@ class WebLayout extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                
                 children: const [
                 ProfileBar(),
                 SearchBar(),
@@ -33,9 +32,9 @@ class WebLayout extends StatelessWidget {
           ),
           Container(
             width: max<double>((MediaQuery.of(context).size.width * 0.65), 40),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               // color: beige300,
-              image: DecorationImage(image: AssetImage("assets/light-background.png"),
+              image: DecorationImage(image: AssetImage( (Theme.of(context).brightness == Brightness.light ? "assets/light-background.png" : "assets/dark-background.png")),
               fit: BoxFit.cover)
             ),
             child: Column(

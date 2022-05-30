@@ -13,10 +13,10 @@ class WebChatTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: max<double>((MediaQuery.of(context).size.height * 0.10), 50.0),
+        height: max<double>((MediaQuery.of(context).size.height * 0.05), 50.0),
         width: max<double>((MediaQuery.of(context).size.width * 0.35), (MediaQuery.of(context).size.width) - 40),
         padding: const EdgeInsets.all(10),
-        color: grey300,
+        color: Theme.of(context).colorScheme.onTertiary,
         child: Row(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -32,8 +32,8 @@ class WebChatTopBar extends StatelessWidget {
             ),
             Row(
               children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.search, color: darkBlue500,)),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert, color: darkBlue500))
+                IconButton(onPressed: () {}, icon: Icon(Icons.search, color: Theme.of(context).brightness == Brightness.light ? darkBlue500 : grey300,)),
+                IconButton(onPressed: () {}, icon: Icon(Icons.more_vert, color: Theme.of(context).brightness == Brightness.light ? darkBlue500 : grey300))
               ]
             ),
           ]

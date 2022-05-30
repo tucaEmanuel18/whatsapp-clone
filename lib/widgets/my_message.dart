@@ -18,7 +18,7 @@ class MyMessage extends StatelessWidget {
         child: Card(
           elevation: 1,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: pastelGreen300,
+          color: Theme.of(context).colorScheme.secondary,
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical:5),
           child: Stack(
             children: [
@@ -31,7 +31,7 @@ class MyMessage extends StatelessWidget {
                 right: 10,
                 child: Row(
                   children: [
-                   Text(date, style: const TextStyle(fontSize: 10, color: darkBlue500)),
+                   Text(date, style: const TextStyle(fontSize: 10, color: grey300)),
                    const SizedBox(width: 5),
                    const Icon(Icons.done_all, color: blue500, size: 16)
                   ]

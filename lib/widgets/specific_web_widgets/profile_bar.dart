@@ -10,9 +10,12 @@ class ProfileBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: max<double>((MediaQuery.of(context).size.height * 0.10), 50.0),
+      height: max<double>((MediaQuery.of(context).size.height * 0.05), 50.0),
       width: max<double>((MediaQuery.of(context).size.width * 0.35), 40),
-      decoration: const BoxDecoration(border: Border(right: BorderSide(color: grey500)), color: grey300,),
+      decoration: BoxDecoration(
+        border: const Border(right: BorderSide(color: grey500)), 
+        color: Theme.of(context).colorScheme.onTertiary,
+        ),
       padding: const EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -23,9 +26,9 @@ class ProfileBar extends StatelessWidget {
           ),
           Row(
             children: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.circle_outlined, color: darkBlue500)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.comment, color: darkBlue500)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert, color: darkBlue500)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.circle_outlined, color: Theme.of(context).brightness == Brightness.light ? darkBlue500 : grey300)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.comment, color: Theme.of(context).brightness == Brightness.light ? darkBlue500 : grey300)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.more_vert, color: Theme.of(context).brightness == Brightness.light ? darkBlue500 : grey300)),
             ]
           )
         ]

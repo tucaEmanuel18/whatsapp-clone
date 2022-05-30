@@ -18,7 +18,7 @@ class SenderMessage extends StatelessWidget {
         child: Card(
           elevation: 1,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: white100,
+          color: Theme.of(context).brightness == Brightness.light ? white100: darkBlue500,
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical:5),
           child: Stack(
             children: [
@@ -29,7 +29,7 @@ class SenderMessage extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 right: 10,
-                child: Text(date, style: const TextStyle(fontSize: 10, color: darkBlue500)),
+                child: Text(date, style: TextStyle(fontSize: 10, color:  Theme.of(context).brightness == Brightness.light ? darkBlue500 : grey500)),
               )
             ]
           )

@@ -67,9 +67,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../themes/colors.dart';
+class MessageInput extends StatefulWidget {
+  const MessageInput({ Key? key }) : super(key: key); 
+  
+  @override
+  State<MessageInput> createState() => _MessageInputState();
+}
 
-class MessageInput extends StatelessWidget {
-  const MessageInput({ Key? key }) : super(key: key);
+class _MessageInputState extends State<MessageInput> {
+  bool emptyMessage = true;
 
   @override
   Widget build(BuildContext context) {
@@ -86,28 +92,28 @@ class MessageInput extends StatelessWidget {
                   decoration:  BoxDecoration(
                     border: Border.all(width: 0, style: BorderStyle.none), 
                     borderRadius: BorderRadius.circular(20),
-                    color: white100,
+                    color: Theme.of(context).brightness == Brightness.light ? white100: darkBlue500,
                   ),
                   child: Row(
                     children: [
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.emoji_emotions_outlined, color: darkBlue500),),
-                      const Expanded(
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.emoji_emotions_outlined),),
+                      Expanded(
                         child: TextField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Type a message',
-                            hintStyle: TextStyle(fontSize: 14, color: darkBlue500),
+                            hintStyle: TextStyle(fontSize: 14),
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
                                 width: 0,
                                 style: BorderStyle.none,
-                              )
+                              ),  
                             ),
-                            // contentPadding: const EdgeInsets.all(10),
                           ),
+                        onChanged: onChangedFunction,
                         ),
                       ),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.attach_file, color: darkBlue500),),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.camera_alt_rounded, color: darkBlue500),),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.attach_file),),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.camera_alt_rounded),),
                     ],
                   ),
                 ),
@@ -117,11 +123,21 @@ class MessageInput extends StatelessWidget {
             CircleAvatar(
               radius: 20,
               backgroundColor: tealGreen500,
-              child: IconButton(onPressed: (){}, icon: const Icon(Icons.mic, color: white100),)
+              child: IconButton(onPressed: (){}, icon: Icon(emptyMessage? Icons.mic: Icons.send, color: white100),)
             )
           ],
         ),
       ),
     );
+  }
+
+
+
+  void onChangedFunction(String value){
+    if(value.isEmpty){
+      setState((){emptyMessage = true;});
+    }else{
+      setState((){emptyMessage = false;});
+    }
   }
 }

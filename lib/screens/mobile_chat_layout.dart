@@ -26,8 +26,8 @@ class MobileChatLayout extends StatelessWidget {
         ],
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/light-background.png"),
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage( (Theme.of(context).brightness == Brightness.light ? "assets/light-background.png" : "assets/dark-background.png")),
           fit: BoxFit.cover)
         ),
         child: Column(
