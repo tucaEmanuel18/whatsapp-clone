@@ -65,7 +65,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/messages_provider.dart';
 import '../../themes/colors.dart';
 class MessageInput extends StatefulWidget {
   const MessageInput({ Key? key }) : super(key: key); 
@@ -75,10 +77,23 @@ class MessageInput extends StatefulWidget {
 }
 
 class _MessageInputState extends State<MessageInput> {
-  bool emptyMessage = true;
+  String currentValue = "";
+  final textController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    textController.addListener(_setCurrentValue);
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {    
     return SizedBox(
       height: max<double>((MediaQuery.of(context).size.height * 0.06), 40.0),
       child: Padding(
@@ -99,6 +114,7 @@ class _MessageInputState extends State<MessageInput> {
                       IconButton(onPressed: (){}, icon: const Icon(Icons.emoji_emotions_outlined),),
                       Expanded(
                         child: TextField(
+                          controller: textController,
                           decoration: const InputDecoration(
                             hintText: 'Type a message',
                             hintStyle: TextStyle(fontSize: 14),
@@ -109,7 +125,6 @@ class _MessageInputState extends State<MessageInput> {
                               ),  
                             ),
                           ),
-                        onChanged: onChangedFunction,
                         ),
                       ),
                       IconButton(onPressed: (){}, icon: const Icon(Icons.attach_file),),
@@ -123,7 +138,12 @@ class _MessageInputState extends State<MessageInput> {
             CircleAvatar(
               radius: 20,
               backgroundColor: tealGreen500,
-              child: IconButton(onPressed: (){}, icon: Icon(emptyMessage? Icons.mic: Icons.send, color: white100),)
+              child: IconButton(onPressed: () {
+                  if(textController.text.isNotEmpty){
+                    Provider.of<MessagesProvider>(context, listen: false).add(textController.text);
+                    textController.text = "";
+                  }
+                }, icon: Icon(textController.text.isEmpty ? Icons.mic: Icons.send, color: white100),)
             )
           ],
         ),
@@ -131,13 +151,7 @@ class _MessageInputState extends State<MessageInput> {
     );
   }
 
-
-
-  void onChangedFunction(String value){
-    if(value.isEmpty){
-      setState((){emptyMessage = true;});
-    }else{
-      setState((){emptyMessage = false;});
-    }
+  void _setCurrentValue() {
+    setState((){currentValue = textController.text;});
   }
 }

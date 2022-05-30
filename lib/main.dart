@@ -12,14 +12,12 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp>{
-   
-
  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Whatsapp-Clone',
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: CustomTheme.lightTheme,
       darkTheme: CustomTheme.darkTheme,
       home: const ResponsiveLayout(mobileLayout: MobileLayout(), webLayout: WebLayout()),

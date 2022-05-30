@@ -7,15 +7,22 @@ import 'package:flutter/material.dart';
 import '../../data/data.dart';
 import '../../themes/colors.dart';
 
-class WebChatTopBar extends StatelessWidget {
-  const WebChatTopBar({ Key? key }) : super(key: key);
+class WebChatTopBar extends StatefulWidget {
+  String username = "";
+  String profileImageLink = "";
+  WebChatTopBar(this.username, this.profileImageLink, {Key? key}) : super(key: key);
 
+  @override
+  State<WebChatTopBar> createState() => _WebChatTopBarState();
+}
+
+class _WebChatTopBarState extends State<WebChatTopBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
         height: max<double>((MediaQuery.of(context).size.height * 0.05), 50.0),
         width: max<double>((MediaQuery.of(context).size.width * 0.35), (MediaQuery.of(context).size.width) - 40),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(5),
         color: Theme.of(context).colorScheme.onTertiary,
         child: Row(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -23,11 +30,11 @@ class WebChatTopBar extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: NetworkImage(data[0]['profile_image'].toString()),
+                  backgroundImage: NetworkImage(widget.profileImageLink),
                   radius: 30
                   ),
                 SizedBox(width: MediaQuery.of(context).size.width*0.01,),
-                Text(data[0]['username'].toString(), style: const TextStyle(fontSize: 18))
+                Text(widget.username, style: const TextStyle(fontSize: 18))
               ],
             ),
             Row(

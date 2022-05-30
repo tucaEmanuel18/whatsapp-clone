@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/selected_contact_provider.dart';
 import '../themes/colors.dart';
 import '../widgets/contacts_list.dart';
 
@@ -53,13 +55,16 @@ class _MobileLayoutState extends State<MobileLayout> with SingleTickerProviderSt
             preferredSize: const Size(300, 50),
           ),
         ),
-        body:  TabBarView(
+        body: TabBarView(
           controller: _tabController,
-          children: const [
-            Center(child: Text('Camera feature is not implemented yet')),
-            ContactsList(),
-            Center(child: Text('Status is not implemented yet')),
-            Center(child: Text('Call feature is not implemented yet')),
+          children: [
+            const Center(child: Text('Camera feature is not implemented yet')),
+            ChangeNotifierProvider(
+              create: (context) => SelectedContactProvider(),
+              child: const ContactsList()
+            ),
+            const Center(child: Text('Status is not implemented yet')),
+            const Center(child: Text('Call feature is not implemented yet')),
           ]
         ),
         floatingActionButton: FloatingActionButton(

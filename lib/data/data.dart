@@ -1,4 +1,4 @@
-const data = [
+List<Map<String, Object>> data = [
       {
         "username": "Brook Archer",
         "profile_image": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
@@ -31,7 +31,7 @@ const data = [
         ]
     },
     {
-        "username": "Tyra Marisa",
+        "username": "Tyra Serj",
         "profile_image": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8d29tYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
         "info_message": "Hello! I'm using whatsapp.",
         "time": '16:26',
@@ -676,7 +676,7 @@ const data = [
 
 
 
-const messages = [{
+List<Map<String, Object>> messages = [{
                 "my_message": false,
                 "content": "Hello my friend! How's life?",
                 "time": '16:30',
